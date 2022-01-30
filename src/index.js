@@ -1,17 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// CSS
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// import books array (named export)
+import { books } from './books';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// import Book component (default export)
+import Book from './Book';
+
+function BookList () {
+
+    return <section className='booklist'>
+        {
+            books.map((book) => {
+                return (
+                    <Book 
+                        key={book.id}
+                        // img={book.img}
+                        // title={book.title}
+                        // author={book.author}
+                        {...book}
+                    ></Book>
+                );
+            })
+        }
+    </section>;
+}
+
+ReactDOM.render(<BookList />, document.getElementById('root'));
